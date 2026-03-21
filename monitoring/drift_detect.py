@@ -8,7 +8,7 @@ from evidently.metric_preset import DataDriftPreset
 reference_data = pd.read_csv("data/train_clean.csv")
 
 # new production data
-current_data = pd.read_csv("data/test_drifted.csv")
+current_data = pd.read_csv("data/test_clean.csv")
 
 report = Report(metrics=[
     DataDriftPreset()

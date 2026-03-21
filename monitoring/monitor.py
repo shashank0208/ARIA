@@ -7,4 +7,4 @@ while True:
 
     print("Monitoring cycle completed")
 
-    time.sleep(3600)  # run every hour
+    time.sleep(10)  # run every hour
