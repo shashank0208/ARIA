@@ -1,0 +1,54 @@
+# aria.yaml — ARIA configuration
+# All thresholds, LLM backend, and output settings live here.
+# Your code never changes — only this file.
+
+llm:
+  backend: "ollama"        # options: "ollama" | "openai" | "claude" | "none"
+  model: "qwen2.5:3b"
+  base_url: "http://localhost:11434"
+  timeout: 60
+  # For openai or claude backends, add:
+  # api_key: "sk-..."
+
+drift:
+  enabled: true
+  thresholds:
+    psi_warning: 0.1
+    psi_critical: 0.2
+    ks_warning: 0.05
+    ks_critical: 0.10
+
+performance:
+  enabled: true
+  metrics:
+    - accuracy
+    - f1
+    - roc_auc
+  thresholds:
+    degradation_warning: 0.05
+    degradation_critical: 0.10
+
+explainability:
+  enabled: true
+  top_n_features: 10
+  thresholds:
+    importance_shift: 0.01
+
+retraining:
+  enabled: false           # Explicit opt-in required
+  buffer_size: 5000
+  trigger_threshold: "critical"
+
+alerting:
+  enabled: true
+  channels:
+    - console
+    # - json
+    # - slack
+  # json_path: "./aria_alerts.json"
+  # slack_webhook_url: "https://hooks.slack.com/..."
+
+output:
+  format:
+    - console
+  report_path: "./aria_report"
